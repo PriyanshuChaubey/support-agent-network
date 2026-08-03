@@ -1,0 +1,32 @@
+[
+  {
+    "case_id": "CASE-1042",
+    "question": "My weekly export digest stopped emailing me after I updated my workspace timezone from PST to EST.",
+    "resolution": "The schedule had gone stale after the timezone change. Re-opening the export and clicking Save without changes recalculated the schedule against the new timezone and resumed delivery.",
+    "tags": ["exports", "timezone", "scheduling"]
+  },
+  {
+    "case_id": "CASE-1077",
+    "question": "Can our read-only analyst generate their own API key for a dashboard integration?",
+    "resolution": "No — API credential creation is restricted to Owner and Admin roles. An Admin created a read-only scoped key on the analyst's behalf instead.",
+    "tags": ["api", "roles", "permissions"]
+  },
+  {
+    "case_id": "CASE-1103",
+    "question": "Export destination started failing with a permissions error overnight, nothing else changed.",
+    "resolution": "The S3 destination's IAM credential had expired. Re-authenticating under Settings > Integrations > Export Destinations resolved it.",
+    "tags": ["exports", "integrations", "s3"]
+  },
+  {
+    "case_id": "CASE-1118",
+    "question": "User wants a refund for last month's Growth plan invoice, says the product wasn't used.",
+    "resolution": "Escalated to the billing team via support@flowlytics.example — refunds are not handled through the support agent or knowledge base.",
+    "tags": ["billing", "refund", "escalation"]
+  },
+  {
+    "case_id": "CASE-1129",
+    "question": "Alert configured for weekday mornings is firing at what looks like the wrong local time.",
+    "resolution": "Alert timing follows the workspace timezone, not the individual user's browser timezone. Workspace timezone was misconfigured and corrected under Settings > Workspace > General.",
+    "tags": ["alerts", "timezone", "notifications"]
+  }
+]

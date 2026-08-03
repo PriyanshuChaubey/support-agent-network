@@ -1,0 +1,210 @@
+17:17:48 INFO support_agent.main: Loading knowledge base from data/kb ...
+17:17:48 INFO support_agent.main: Loaded 40 passages (9 docs + resolved cases)
+17:17:48 INFO support_agent.models: Using MockBackend (no real model weights loaded).
+17:17:48 INFO support_agent.main: Index built in 0.00s
+17:17:48 INFO support_agent.main: Model stats: {"embedding_model": "mock-bow-overlap", "generation_model": "mock-template", "embedder_load_seconds": 0.0, "generator_load_seconds": 0.0}
+17:17:48 INFO support_agent.retrieval: retrieval: top result doc=user-roles-permissions.md score=0.231
+17:17:48 INFO support_agent.triage: triage_finalize: classification=answerable (Top retrieved passage score 0.231 >= threshold 0.08.)
+17:17:48 INFO support_agent.generation: generation: produced 92-char draft answer
+17:17:48 INFO support_agent.verification: verification: passed=True (all checks passed)
+17:17:48 INFO support_agent.finalize: finalize: classification=answerable requires_human=False
+
+======================================================================
+QUESTION: Can a read-only user create API credentials?
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> retrieval -> triage_finalize -> generation -> verification -> finalize
+LATENCY: 0.01s
+----------------------------------------------------------------------
+{
+  "classification": "answerable",
+  "answer": "Based on the documentation: # User Roles and Permissions [Source: user-roles-permissions.md]",
+  "sources": [
+    {
+      "document": "user-roles-permissions.md",
+      "passage": "# User Roles and Permissions\n\nFlowlytics has four workspace roles:\n\n| Role       | Can view data | Can edit reports | Can manage users | Can create API credentials |\n|------------|---------------|-------------------|----"
+    },
+    {
+      "document": "api-credentials.md",
+      "passage": "# API Credentials\n\nAPI credentials authenticate requests to the Flowlytics REST API."
+    },
+    {
+      "document": "user-roles-permissions.md",
+      "passage": "## API credentials and the read-only role\n\nRead-only users can view dashboards, reports, and exports, but **cannot**\ncreate, rotate, or revoke API credentials, regardless of any other\npermission grant. API credential man"
+    }
+  ],
+  "confidence": 0.64,
+  "requires_human": false,
+  "reason": "Answer generated from retrieved knowledge-base evidence and passed verification."
+}
+======================================================================
+17:17:48 INFO support_agent.retrieval: retrieval: top result doc=troubleshooting-exports.md score=0.111
+17:17:48 INFO support_agent.triage: triage_finalize: classification=answerable (Top retrieved passage score 0.111 >= threshold 0.08.)
+17:17:48 INFO support_agent.generation: generation: produced 99-char draft answer
+17:17:48 INFO support_agent.verification: verification: passed=True (all checks passed)
+17:17:48 INFO support_agent.finalize: finalize: classification=answerable requires_human=False
+
+======================================================================
+QUESTION: My scheduled exports stopped after I changed my workspace timezone. What should I check?
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> retrieval -> triage_finalize -> generation -> verification -> finalize
+LATENCY: 0.00s
+----------------------------------------------------------------------
+{
+  "classification": "answerable",
+  "answer": "Based on the documentation: ## Export stopped running entirely [Source: troubleshooting-exports.md]",
+  "sources": [
+    {
+      "document": "troubleshooting-exports.md",
+      "passage": "## Export stopped running entirely\n\nSee `scheduled-exports.md` and `workspace-settings.md` \u2014 this is most often\ncaused by a workspace timezone change that left the schedule stale."
+    },
+    {
+      "document": "CASE-1042",
+      "passage": "Q: My weekly export digest stopped emailing me after I updated my workspace timezone from PST to EST.\nResolution: The schedule had gone stale after the timezone change. Re-opening the export and clicking Save without cha"
+    },
+    {
+      "document": "workspace-settings.md",
+      "passage": "## Recommended steps after a timezone change\n\n- Re-open every scheduled export and click **Save** again, even if no fields\n  were changed. This forces the schedule to recalculate against the new\n  timezone.\n- Check **Set"
+    }
+  ],
+  "confidence": 0.59,
+  "requires_human": false,
+  "reason": "Answer generated from retrieved knowledge-base evidence and passed verification."
+}
+======================================================================
+17:17:48 INFO support_agent.retrieval: retrieval: top result doc=api-credentials.md score=0.000
+17:17:48 INFO support_agent.triage: triage_finalize: classification=requires_clarification (Best retrieval score 0.000 is below the confidence threshold 0.08.)
+17:17:48 INFO support_agent.finalize: finalize: classification=requires_clarification requires_human=False
+
+======================================================================
+QUESTION: It's broken, please fix it.
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> retrieval -> triage_finalize -> finalize
+LATENCY: 0.00s
+----------------------------------------------------------------------
+{
+  "classification": "requires_clarification",
+  "answer": "Could you share a bit more detail? For example: which feature this involves (exports, alerts, API access, billing, etc.), and any error message or exact steps you've already tried. That will let me search the right documentation.",
+  "sources": [],
+  "confidence": 0.3,
+  "requires_human": false,
+  "reason": "Best retrieval score 0.000 is below the confidence threshold 0.08."
+}
+======================================================================
+17:17:48 INFO support_agent.triage: triage_intent: matched out-of-scope pattern 'refund'
+17:17:48 INFO support_agent.finalize: finalize: classification=out_of_scope requires_human=True
+
+======================================================================
+QUESTION: Write a refund for my subscription.
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> finalize
+LATENCY: 0.00s
+----------------------------------------------------------------------
+{
+  "classification": "out_of_scope",
+  "answer": "This request is outside what I can safely handle automatically (it involves billing/refund/legal action). I'm not able to issue or promise a refund myself \u2014 I've flagged this for a human on the billing team to review.",
+  "sources": [],
+  "confidence": 0.95,
+  "requires_human": true,
+  "reason": "Request matches an out-of-scope pattern ('refund') that the support knowledge base intentionally does not cover."
+}
+======================================================================
+17:17:48 INFO support_agent.retrieval: retrieval: top result doc=escalation-process.md score=0.191
+17:17:48 INFO support_agent.triage: triage_finalize: classification=answerable (Top retrieved passage score 0.191 >= threshold 0.08.)
+17:17:48 INFO support_agent.generation: generation: produced 80-char draft answer
+17:17:48 INFO support_agent.verification: verification: passed=True (all checks passed)
+17:17:48 INFO support_agent.finalize: finalize: classification=answerable requires_human=False
+
+======================================================================
+QUESTION: The suggested solution did not work. What information should I collect before escalating?
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> retrieval -> triage_finalize -> generation -> verification -> finalize
+LATENCY: 0.00s
+----------------------------------------------------------------------
+{
+  "classification": "answerable",
+  "answer": "Based on the documentation: # Escalation Process [Source: escalation-process.md]",
+  "sources": [
+    {
+      "document": "escalation-process.md",
+      "passage": "# Escalation Process\n\nIf a suggested solution does not resolve the issue, escalate to a human\nsupport engineer."
+    },
+    {
+      "document": "escalation-process.md",
+      "passage": "## Information to collect before escalating\n\n- Workspace ID (found in **Settings \u2192 Workspace \u2192 General**).\n- The exact report or export name affected.\n- Timestamps of the last successful run and the first failed run.\n- A"
+    },
+    {
+      "document": "CASE-1129",
+      "passage": "Q: Alert configured for weekday mornings is firing at what looks like the wrong local time.\nResolution: Alert timing follows the workspace timezone, not the individual user's browser timezone. Workspace timezone was misc"
+    }
+  ],
+  "confidence": 0.63,
+  "requires_human": false,
+  "reason": "Answer generated from retrieved knowledge-base evidence and passed verification."
+}
+======================================================================
+17:17:49 INFO support_agent.main: Loading knowledge base from data/kb ...
+17:17:49 INFO support_agent.main: Loaded 40 passages (9 docs + resolved cases)
+17:17:49 INFO support_agent.models: Using MockBackend (no real model weights loaded).
+17:17:49 INFO support_agent.main: Index built in 0.00s
+17:17:49 INFO support_agent.main: Model stats: {"embedding_model": "mock-bow-overlap", "generation_model": "mock-template", "embedder_load_seconds": 0.0, "generator_load_seconds": 0.0}
+17:17:49 INFO support_agent.retrieval: retrieval: top result doc=troubleshooting-exports.md score=0.087
+17:17:49 INFO support_agent.triage: triage_finalize: classification=answerable (Top retrieved passage score 0.087 >= threshold 0.08.)
+17:17:49 INFO support_agent.generation: generation: produced 119-char draft answer
+17:17:49 INFO support_agent.verification: verification: passed=False (missing a [Source: ...] citation matching a retrieved document; low lexical overlap with evidence (0.15 < 0.35); claims not found in evidence: ['24 hours', 'settings -> legacy panel -> force resync'])
+17:17:49 INFO support_agent.finalize: prepare_revision: attempt 1, feedback=missing a [Source: ...] citation matching a retrieved document; low lexical overlap with evidence (0.15 < 0.35); claims not found in evidence: ['24 hours', 'settings -> legacy panel -> force resync']
+17:17:49 INFO support_agent.generation: generation: revising with feedback: missing a [Source: ...] citation matching a retrieved document; low lexical overlap with evidence (0.15 < 0.35); claims not found in evidence: ['24 hours', 'settings -> legacy panel -> force resync']
+17:17:49 INFO support_agent.generation: generation: produced 105-char draft answer
+17:17:49 INFO support_agent.verification: verification: passed=True (all checks passed)
+17:17:49 INFO support_agent.finalize: finalize: classification=answerable requires_human=False
+
+======================================================================
+QUESTION: What should I check if my export fails? VERIFY_FAIL_DEMO
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> retrieval -> triage_finalize -> generation -> verification -> prepare_revision -> generation -> verification -> finalize
+LATENCY: 0.01s
+----------------------------------------------------------------------
+{
+  "classification": "answerable",
+  "answer": "Based on the documentation: ## Export fails with a permissions error [Source: troubleshooting-exports.md]",
+  "sources": [
+    {
+      "document": "troubleshooting-exports.md",
+      "passage": "## Export fails with a permissions error\n\nThe destination integration (S3 / webhook) credential has likely expired.\nRe-authenticate under **Settings \u2192 Integrations \u2192 Export Destinations**."
+    },
+    {
+      "document": "scheduled-exports.md",
+      "passage": "## Checklist before escalating an export issue\n\n- Confirm the workspace timezone was recently changed.\n- Re-save the schedule and wait 15 minutes.\n- Check the destination's authentication status.\n- Check **Settings \u2192 Wor"
+    },
+    {
+      "document": "escalation-process.md",
+      "passage": "## What NOT to include\n\nDo not include API keys, passwords, or full credit card numbers in an\nescalation. Support engineers never need raw credentials to investigate."
+    }
+  ],
+  "confidence": 0.58,
+  "requires_human": false,
+  "reason": "Answer generated from retrieved knowledge-base evidence and passed verification."
+}
+======================================================================
+17:17:49 INFO support_agent.main: Loading knowledge base from data/kb ...
+17:17:49 INFO support_agent.main: Loaded 40 passages (9 docs + resolved cases)
+17:17:49 INFO support_agent.models: Using MockBackend (no real model weights loaded).
+17:17:49 INFO support_agent.main: Index built in 0.00s
+17:17:49 INFO support_agent.main: Model stats: {"embedding_model": "mock-bow-overlap", "generation_model": "mock-template", "embedder_load_seconds": 0.0, "generator_load_seconds": 0.0}
+17:17:49 INFO support_agent.triage: triage_intent: matched explicit escalation request 'talk to a human'
+17:17:49 INFO support_agent.finalize: finalize: classification=requires_escalation requires_human=True
+
+======================================================================
+QUESTION: Please connect me with support, I want to talk to a human.
+----------------------------------------------------------------------
+NODE TRACE: triage_intent -> finalize
+LATENCY: 0.00s
+----------------------------------------------------------------------
+{
+  "classification": "requires_escalation",
+  "answer": "This needs a human support engineer. Please have the following ready: your workspace ID, the exact report/export name, timestamps, any error text, and the steps you've already tried.",
+  "sources": [],
+  "confidence": 0.9,
+  "requires_human": true,
+  "reason": "User explicitly asked for a human agent."
+}
+======================================================================

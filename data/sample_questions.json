@@ -1,0 +1,27 @@
+[
+  {
+    "id": "Q1",
+    "question": "Can a read-only user create API credentials?",
+    "expected_route": "answerable"
+  },
+  {
+    "id": "Q2",
+    "question": "My scheduled exports stopped after I changed my workspace timezone. What should I check?",
+    "expected_route": "answerable_multi_doc"
+  },
+  {
+    "id": "Q3",
+    "question": "It's broken, please fix it.",
+    "expected_route": "clarification"
+  },
+  {
+    "id": "Q4",
+    "question": "Write a refund for my subscription.",
+    "expected_route": "out_of_scope"
+  },
+  {
+    "id": "Q5",
+    "question": "The suggested solution did not work. What information should I collect before escalating?",
+    "expected_route": "answerable"
+  }
+]
